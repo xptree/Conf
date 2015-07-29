@@ -190,19 +190,19 @@ bindkey '^f' forward-word
 bindkey '^w' backward-delete-word
 bindkey '^c' kill-buffer
 bindkey ' ' magic-space
-autoload zkbd
-[[ -f $HOME/.zsh/zkbd/$TERM ]] && source $HOME/.zsh/zkbd/$TERM || zkbd
-[[ -n ${key[Backspace]} ]] && bindkey "${key[Backspace]}" backward-delete-char
-[[ -n ${key[Insert]} ]] && bindkey "${key[Insert]}" overwrite-mode
-[[ -n ${key[Home]} ]] && bindkey "${key[Home]}" beginning-of-line
-[[ -n ${key[PageUp]} ]] && bindkey "${key[PageUp]}" history-substring-search-up
-[[ -n ${key[PageDown]} ]] && bindkey "${key[PageDown]}" history-substring-search-down
-[[ -n ${key[Delete]} ]] && bindkey "${key[Delete]}" delete-char
-[[ -n ${key[End]} ]] && bindkey "${key[End]}" end-of-line
-[[ -n ${key[Up]} ]] && bindkey "${key[Up]}" up-line-or-search
-[[ -n ${key[Down]} ]] && bindkey "${key[Down]}" down-line-or-search
-[[ -n ${key[Left]} ]] && bindkey "${key[Left]}" backward-char
-[[ -n ${key[Right]} ]] && bindkey "${key[Right]}" forward-char
+#autoload zkbd
+#[[ -f $HOME/.zsh/zkbd/$TERM ]] && source $HOME/.zsh/zkbd/$TERM || zkbd
+#[[ -n ${key[Backspace]} ]] && bindkey "${key[Backspace]}" backward-delete-char
+#[[ -n ${key[Insert]} ]] && bindkey "${key[Insert]}" overwrite-mode
+#[[ -n ${key[Home]} ]] && bindkey "${key[Home]}" beginning-of-line
+#[[ -n ${key[PageUp]} ]] && bindkey "${key[PageUp]}" history-substring-search-up
+#[[ -n ${key[PageDown]} ]] && bindkey "${key[PageDown]}" history-substring-search-down
+#[[ -n ${key[Delete]} ]] && bindkey "${key[Delete]}" delete-char
+#[[ -n ${key[End]} ]] && bindkey "${key[End]}" end-of-line
+#[[ -n ${key[Up]} ]] && bindkey "${key[Up]}" up-line-or-search
+#[[ -n ${key[Down]} ]] && bindkey "${key[Down]}" down-line-or-search
+#[[ -n ${key[Left]} ]] && bindkey "${key[Left]}" backward-char
+#[[ -n ${key[Right]} ]] && bindkey "${key[Right]}" forward-char
 
 # Move along shell argument, aka 'Big Word' (defined as separate by spaces)
 zsh-word-movement () {
@@ -237,7 +237,7 @@ sudo-command-line() {
 	zle end-of-line
 }
 zle -N sudo-command-line
-bindkey "${key[F2]}" sudo-command-line
+# bindkey "${key[F2]}" sudo-command-line
 
 # Complete
 autoload -U compinit

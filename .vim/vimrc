@@ -1,0 +1,44 @@
+" vim: fdm=marker:
+" Recommended for vim >= 7; no guarantee of compatibility with earlier versions
+" Lucas Oman <me@lucasoman.com>
+" --enable-rubyinterp --prefix=/usr --enable-ruby
+" Get latest from: http://github.com/lucasoman/Conf/raw/master/.vimrc
+
+
+" load pathogen
+" call pathogen#runtime_append_all_bundles()
+let mapleader = ','
+let g:mapleader = ','
+
+if filewritable(expand("~/.vimrc.bundles"))
+	source ~/.vimrc.bundles
+endif
+
+colorscheme desert
+filetype plugin indent on
+syntax on
+
+
+"set t_Co=256
+
+" mappings
+" {{{ general
+" keep block highlighted when indenting
+vmap >> >gv
+vmap << <gv
+" comment/uncomment highlighted block
+vmap <Leader>cc :s!^!//!<CR>
+vmap <Leader>cu :s!^//!!<CR>
+" open local projects list file
+nmap <Leader>v :vsplit .<CR>
+nmap <Leader>l :split .<CR>
+" use them to swap between split windows
+nmap <left> <C-W>h
+nmap <right> <C-W>l
+nmap <up> <C-W>k
+nmap <down> <C-W>j
+"}}}
+
+
+
+
