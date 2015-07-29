@@ -14,16 +14,68 @@ if filewritable(expand("~/.vimrc.bundles"))
 	source ~/.vimrc.bundles
 endif
 
-colorscheme desert
 filetype plugin indent on
 syntax on
 
 
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
 "set t_Co=256
+
+set laststatus=2
+
+set cursorcolumn
+set cursorline
+
+" code folding
+set foldmethod=indent   
+set foldnestmax=10
+set nofoldenable
+set foldlevel=2
+
+" 缩进配置
+set smartindent
+set autoindent
+
+" tab相关
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set smarttab
+set shiftround
+
+" 搜索
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
+" 括号匹配
+set showmatch
+set matchtime=1
+
+" 行号
+set number
+set nowrap
+" let h&l cross line boundaries
+set whichwrap=h,l 
+
+" 显示当前行号列号
+set ruler
+" 在状态栏显示正在输入的命令
+set showcmd
+" 在状态栏显示当前的vim模式
+set showmode
+" 在上下移动光标时，上下方保留的行数
+set scrolloff=10
+
+" 从剪切板复制的行为
+set pastetoggle=<leader>p
 
 " mappings
 " {{{ general
-" keep block highlighted when indenting
+" keep block highlighted when indentingst showmatch
+" set matchtime=1
 vmap >> >gv
 vmap << <gv
 " comment/uncomment highlighted block
@@ -39,6 +91,66 @@ nmap <up> <C-W>k
 nmap <down> <C-W>j
 "}}}
 
+" ==================================
+" FileType Settings 文件类型设置
+" ==================================
+" For python"
+autocmd FileType python set tabstop=4 shiftwidth=4 expandtab ai
+autocmd FileType ruby set tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai
 
+" 保存python文件时删除多余空格
+fun! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+autocmd FileType c,cpp,java,javascrip,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+
+" 定义函数AutoSetFileHead，自动插入文件头
+autocmd BufNewFile *.sh,*.py exec ":call AutoSetFileHead()"
+function! AutoSetFileHead()
+    "如果文件类型为.sh文件
+    if &filetype == 'sh'
+        call setline(1, "\#!/bin/bash")
+    endif
+
+    "如果文件类型为python
+    if &filetype == 'python'
+        call setline(1, "\#!/usr/bin/env python")
+        call append(1, "\# encoding: utf-8")
+        call append(2, "\# File Name: ".expand("%"))
+        call append(3, "\# Author: Jiezhong Qiu")
+        call append(4, "\# Create Time: " . strftime("%Y/%m/%d %H:%M"))
+        call append(5, "\# TODO:")
+    endif
+
+    normal G
+    normal o
+    normal o
+endfunc
+
+" C, C++, java, sh, python ... 按F10运行
+map <F10> :call CompileRun()<CR>
+func! CompileRun()
+    exec "w"
+    if &filetype == 'c'
+        exec "!g++ % -o %<"
+        exec "!time ./%<"
+        exec "!rm ./%<"
+    elseif &filetype == 'cpp'
+        exec "!g++ % -o %<"
+        exec "!time ./%<"
+        exec "!rm ./%<"
+    elseif &filetype == 'java'
+        exec "!javac %"
+        exec "!time java %<"
+        exec "!rm ./%<.class"
+    elseif &filetype == 'sh'
+        exec "!time bash %"
+    elseif &filetype == 'python'
+        exec "!time python %"
+    endif
+endfunc
 
 

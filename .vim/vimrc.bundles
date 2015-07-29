@@ -1,12 +1,20 @@
 set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-Bundle 'gmarik/Vundle.vim'
+Bundle 'gmarik/vundle'
+
+" 主题 molokai
+Bundle 'tomasr/molokai'
+colorscheme molokai
+let g:molokai_original = 1
+let g:rehash256 = 1
+
 
 Bundle 'Shougo/neocomplcache'
 let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_max_menu_width = 30
 
 Bundle 'bling/vim-airline'
 if !exists('g:airline_symbols')
@@ -40,3 +48,16 @@ let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^
 "" s/v 分屏打开文件
 let g:NERDTreeMapOpenSplit = 's'
 let g:NERDTreeMapOpenVSplit = 'v'
+
+
+"################### 语言相关 ###################
+"
+""###### Python #########
+
+" python fly check, 弥补syntastic只能打开和保存才检查语法的不足
+Bundle 'kevinw/pyflakes-vim'
+let g:pyflakes_use_quickfix = 0
+
+" for python.vim syntax highlight
+Bundle 'hdima/python-syntax'
+let python_highlight_all = 1
