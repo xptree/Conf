@@ -52,13 +52,21 @@ set smartcase
 
 " 括号匹配
 set showmatch
-set matchtime=1
+set matchtime=2
 
 " 行号
 set number
 set nowrap
+" Configure backspace so it acts as it should act
+set backspace=eol,start,indent
 " let h&l cross line boundaries
-set whichwrap=h,l 
+set whichwrap+=<,>,h,l
+
+" Remember info about open buffers on close"
+set viminfo^=%
+
+" For regular expressions turn magic on
+set magic
 
 " 显示当前行号列号
 set ruler
