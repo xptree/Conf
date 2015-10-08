@@ -78,7 +78,7 @@ set showmode
 set scrolloff=10
 
 " 从剪切板复制的行为
-set pastetoggle=<leader>p
+set pastetoggle=<leader>t
 
 " mappings
 " {{{ general
@@ -102,6 +102,7 @@ nmap <down> <C-W>j
 " 新建tab  Ctrl+t
 nnoremap <C-t>     :tabnew<CR>
 inoremap <C-t>     <Esc>:tabnew<CR>
+
 " normal模式下切换到确切的tab
 noremap <leader>1 1gt
 noremap <leader>2 2gt

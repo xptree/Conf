@@ -27,6 +27,8 @@ let g:rehash256 = 1
 Bundle 'Shougo/neocomplcache'
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_max_menu_width = 30
+" Use smartcase.
+let g:neocomplcache_enable_smart_case = 1
 
 Bundle 'bling/vim-airline'
 if !exists('g:airline_symbols')
