@@ -103,6 +103,12 @@ nmap <down> <C-W>j
 nnoremap <C-t>     :tabnew<CR>
 inoremap <C-t>     <Esc>:tabnew<CR>
 
+" for HHKB where no up/down/left/right
+inoremap <C-j>	<down>
+inoremap <C-k>	<up>
+inoremap <C-h>	<left>
+inoremap <C-l>	<right>
+
 " normal模式下切换到确切的tab
 noremap <leader>1 1gt
 noremap <leader>2 2gt
