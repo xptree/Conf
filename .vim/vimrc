@@ -109,6 +109,12 @@ inoremap <C-k>	<up>
 inoremap <C-h>	<left>
 inoremap <C-l>	<right>
 
+nmap <C-j>	<down>
+nmap <C-k>	<up>
+nmap <C-h>	<left>
+nmap <C-l>	<right>
+
+
 " normal模式下切换到确切的tab
 noremap <leader>1 1gt
 noremap <leader>2 2gt
