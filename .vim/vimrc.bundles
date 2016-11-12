@@ -5,6 +5,12 @@ call vundle#rc()
 
 Bundle 'gmarik/vundle'
 
+Bundle 'rhysd/vim-clang-format'
+autocmd FileType c,cpp,objc,java nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp,objc,java vnoremap <buffer><Leader>cf :ClangFormat<CR>
+" Toggle auto formatting:
+nmap <Leader>C :ClangFormatAutoToggle<CR>
+
 "多语言语法检查
 Bundle 'scrooloose/syntastic'
 let g:syntastic_error_symbol='>>'
