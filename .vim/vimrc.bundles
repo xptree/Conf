@@ -1,18 +1,19 @@
 set nocompatible
+set hidden
 filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim/
+call vundle#begin()
 
-Bundle 'gmarik/vundle'
+Plugin 'VundleVim/Vundle.vim'
 
-Bundle 'rhysd/vim-clang-format'
+Plugin 'rhysd/vim-clang-format'
 autocmd FileType c,cpp,objc,java nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
 autocmd FileType c,cpp,objc,java vnoremap <buffer><Leader>cf :ClangFormat<CR>
 " Toggle auto formatting:
 nmap <Leader>C :ClangFormatAutoToggle<CR>
 
 "多语言语法检查
-Bundle 'scrooloose/syntastic'
+Plugin 'scrooloose/syntastic'
 let g:syntastic_error_symbol='>>'
 let g:syntastic_warning_symbol='>'
 let g:syntastic_check_on_open=1
@@ -24,19 +25,19 @@ let g:syntastic_html_checkers=['tidy', 'jshint']
 highlight SyntasticErrorSign guifg=white guibg=black
 
 " 主题 molokai
-Bundle 'tomasr/molokai'
-colorscheme molokai
+Plugin 'tomasr/molokai'
 let g:molokai_original = 1
 let g:rehash256 = 1
 
 
-Bundle 'Shougo/neocomplcache'
+Plugin 'Shougo/neocomplcache'
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_max_menu_width = 30
 " Use smartcase.
 let g:neocomplcache_enable_smart_case = 1
 
-Bundle 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 if !exists('g:airline_symbols')
 	let g:airline_symbols = {}
 endif
@@ -47,9 +48,10 @@ let g:airline_right_alt_sep = '❮'
 let g:airline_symbols.linenr = '¶'
 let g:airline_symbols.branch = '⎇'
 let g:airline_theme= "powerlineish"
+let g:airline#extensions#tabline#enabled = 1
 
 "括号显示增强
-Bundle 'kien/rainbow_parentheses.vim'
+Plugin 'kien/rainbow_parentheses.vim'
 let g:rbpt_colorpairs = [
     \ ['brown',       'RoyalBlue3'],
     \ ['Darkblue',    'SeaGreen3'],
@@ -76,7 +78,7 @@ au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
 
-Bundle "szw/vim-ctrlspace"
+Plugin 'vim-ctrlspace/vim-ctrlspace'
 let g:airline_exclude_preview = 1
 hi CtrlSpaceSelected guifg=#586e75 guibg=#eee8d5 guisp=#839496 gui=reverse,bold ctermfg=10 ctermbg=7 cterm=reverse,bold
 hi CtrlSpaceNormal   guifg=#839496 guibg=#021B25 guisp=#839496 gui=NONE ctermfg=12 ctermbg=0 cterm=NONE
@@ -84,7 +86,7 @@ hi CtrlSpaceSearch   guifg=#cb4b16 guibg=NONE gui=bold ctermfg=9 ctermbg=NONE te
 hi CtrlSpaceStatus   guifg=#839496 guibg=#002b36 gui=reverse term=reverse cterm=reverse ctermfg=12 ctermbg=8
 
 
-Bundle 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdtree'
 map <leader>n :NERDTreeToggle<CR>
 let NERDTreeHighlightCursorline=1
 let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$' ]
@@ -102,7 +104,7 @@ let g:NERDTreeMapOpenVSplit = 'v'
 
 " 文件搜索
 " change to https://github.com/ctrlpvim/ctrlp.vim
-Bundle 'ctrlpvim/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 let g:ctrlp_map = '<leader>p'
 let g:ctrlp_cmd = 'CtrlP'
 map <leader>f :CtrlPMRU<CR>
@@ -121,7 +123,7 @@ let g:ctrlp_follow_symlinks=1
 
 
 " ctrlp插件1 - 不用ctag进行函数快速跳转
-Bundle 'tacahiroy/ctrlp-funky'
+Plugin 'tacahiroy/ctrlp-funky'
 nnoremap <Leader>fu :CtrlPFunky<Cr>
 " narrow the list down with a word under cursor
 nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
@@ -129,7 +131,7 @@ let g:ctrlp_funky_syntax_highlight = 1
 let g:ctrlp_extensions = ['funky']
 
 " 标签导航
-Bundle 'majutsushi/tagbar'
+Plugin 'majutsushi/tagbar'
 nmap <F9> :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
 
@@ -152,40 +154,40 @@ let g:tagbar_type_ruby = {
 ""###### Python #########
 
 " python fly check, 弥补syntastic只能打开和保存才检查语法的不足
-Bundle 'kevinw/pyflakes-vim'
+Plugin 'kevinw/pyflakes-vim'
 let g:pyflakes_use_quickfix = 0
 
 " for python.vim syntax highlight
-Bundle 'hdima/python-syntax'
+Plugin 'hdima/python-syntax'
 let python_highlight_all = 1
 
 " 自动补全单引号，双引号等
-Bundle 'Raimondi/delimitMate'
+Plugin 'Raimondi/delimitMate'
 "" for python docstring ",优化输入
 au FileType python let b:delimitMate_nesting_quotes = ['"']
 
 
 " 自动补全html/xml标签
-Bundle 'docunext/closetag.vim'
+Plugin 'docunext/closetag.vim'
 let g:closetag_html_style=1
 
 "################### 快速编码 ###################
 
 " 快速注释
-Bundle 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdcommenter'
 let g:NERDSpaceDelims=1
 
 " 快速加入修改环绕字符
-Bundle 'tpope/vim-surround'
+Plugin 'tpope/vim-surround'
 " for repeat -> enhance surround.vim, . to repeat command
-Bundle 'tpope/vim-repeat'
+Plugin 'tpope/vim-repeat'
 
 " 快速去行尾空格 [, + <Space>]
-Bundle 'bronson/vim-trailing-whitespace'
+Plugin 'bronson/vim-trailing-whitespace'
 map <leader><space> :FixWhitespace<cr>
 
 " 快速赋值语句对齐
-Bundle 'junegunn/vim-easy-align'
+Plugin 'junegunn/vim-easy-align'
 vmap <Leader>a <Plug>(EasyAlign)
 nmap <Leader>a <Plug>(EasyAlign)
 if !exists('g:easy_align_delimiters')
@@ -193,4 +195,4 @@ if !exists('g:easy_align_delimiters')
 endif
 let g:easy_align_delimiters['#'] = { 'pattern': '#', 'ignore_groups': ['String'] }
 
-
+call vundle#end()

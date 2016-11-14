@@ -18,9 +18,10 @@ filetype plugin indent on
 syntax on
 
 
+colorscheme molokai
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
-"set t_Co=256
+set t_Co=256
 
 set laststatus=2
 
