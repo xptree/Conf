@@ -2,3 +2,4 @@ set -x
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 ln -s ~/Conf/.vim/vimrc ~/.vimrc
 ln -s ~/Conf/.vim/vimrc.bundles ~/.vimrc.bundles
+vim +PluginInstall +qall
