@@ -12,7 +12,6 @@ Plugin 'VundleVim/Vundle.vim'
 " Toggle auto formatting:
 " nmap <Leader>C :ClangFormatAutoToggle<CR>
 
-"多语言语法检查
 Plugin 'scrooloose/syntastic'
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -25,12 +24,12 @@ let g:syntastic_check_on_open=1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_enable_highlighting = 0
 "let g:syntastic_python_checker="flake8,pyflakes,pep8,pylint"
-let g:syntastic_python_checkers=['pyflakes'] " 使用pyflakes,速度比pylint快
+let g:syntastic_python_checkers=['pyflakes'] " pyflakes should be faster than pylint
 let g:syntastic_javascript_checkers = ['jsl', 'jshint']
 let g:syntastic_html_checkers=['tidy', 'jshint']
 highlight SyntasticErrorSign guifg=white guibg=black 
 
-" 主题 molokai
+" theme molokai
 Plugin 'tomasr/molokai'
 let g:molokai_original = 1
 let g:rehash256 = 1
@@ -47,8 +46,10 @@ Plugin 'vim-airline/vim-airline-themes'
 "     let g:airline_symbols = {}
 " endif
 let g:airline_theme="molokai"
+let g:airline#extensions#tagbar#enabled = 1
+let g:airline#extensions#tagbar#flags = 'f'
 let g:airline#extensions#tabline#enabled = 1
- let g:airline_symbols_ascii=1
+let g:airline_symbols_ascii=1
 
 "括号显示增强
 Plugin 'kien/rainbow_parentheses.vim'
@@ -135,7 +136,9 @@ let g:ctrlp_extensions = ['funky']
 " 标签导航
 Plugin 'majutsushi/tagbar'
 nmap <F9> :TagbarToggle<CR>
-let g:tagbar_autofocus = 1
+let g:tagbar_autofocus = 0
+autocmd FileType c,cpp,python nested :call tagbar#autoopen(0)
+autocmd BufEnter c,cpp,python nested :call tagbar#autoopen(0)
 
 " for ruby
 let g:tagbar_type_ruby = {
